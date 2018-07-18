@@ -36,4 +36,9 @@ class User < ApplicationRecord
     end
     user
   end
+  
+  has_many :likes 
+  has_many :products, through: :likes
+
+  
 end

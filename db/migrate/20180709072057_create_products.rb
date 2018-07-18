@@ -8,6 +8,8 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :longitude
       t.string :image_address
       
+      t.integer :product_id
+      
       t.text :description
 
       t.timestamps

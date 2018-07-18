@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-    get '/product_new' => 'products#new_map'
-    post '/product_map' => 'products#create_map'
+  
+  get '/likes/:product_id/home' => 'home#like_product'
+  get '/likes/:product_id/product' => 'products#like_product'
 end
