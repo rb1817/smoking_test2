@@ -1,6 +1,6 @@
 <div id="map" style="width:100%;height:300px;z-index: 0;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey="></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36ffb31b29565cb54913d6c0ac8bfc04"></script>
 <script>
 
 
@@ -179,27 +179,33 @@ var positions = [];
         }
     );
 <% end %>
-
+console.log(overlay);
+var overlay = [];
 for (var i = 0; i < positions.length; i ++) {
     var marker = new daum.maps.Marker({
         map: map, 
-        position: positions[i].latlng
+        position: positions[i].latlng,
+        title: i
     });
-    var overlay = new daum.maps.CustomOverlay({
+    console.log(marker);
+   overlay[i]= new daum.maps.CustomOverlay({
             content: positions[i].content,
             position: positions[i].latlng
     });
-    var over = new Array(new daum.maps.CustomOverlay({
-            content: positions[i].content,
-            position: positions[i].latlng
-    }));
-    over.setMap(null);
+    console.log(overlay.length);
+    
     (function(marker, overlay) {
         // 마커에 click 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다.
-            
+           
         daum.maps.event.addListener(marker, 'click', function() {
+            var selectedMarker = marker;
+            for (var j = 0; j < positions.length; j ++) {
+            if (selectedMarker || selectedMarker == marker) {
+                overlay[j].setMap(null);
+            };
+            };
+            overlay[marker.getTitle()].setMap(map);
             
-            overlay.setMap(map);
             var product_id =$(".title").attr('value');
              $.ajax({
                url: "/",
