@@ -214,6 +214,7 @@ for (var i = 0; i < positions.length; i ++) {
                    product_id: product_id
                }
            });
+           console.log(product_id);
            $('.like').on('click',function(){
             $.ajax({
                 url:'/likes/product_id/home'
@@ -227,7 +228,7 @@ for (var i = 0; i < positions.length; i ++) {
         // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
         daum.maps.event.addListener(marker, 'mouseout', function() {
           $( ".close" ).click( function() {
-           overlay.setMap(null); 
+           overlay[marker.getTitle()].setMap(null); 
             });
         });
     })(marker, overlay);

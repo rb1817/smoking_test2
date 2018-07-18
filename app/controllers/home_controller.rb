@@ -14,6 +14,7 @@ class HomeController < ApplicationController
     @like = Like.where(user_id: current_user.id, product_id: session[:product_id]).first
     if @like.nil?
        @like=Like.create(user_id: current_user.id,product_id: session[:product_id])
+ 
     else
         @like.destroy
     #만약에 현재 로그인한 유저가 이미 좋아요를 눌렀을 경우
